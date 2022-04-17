@@ -12,16 +12,23 @@ export class CommentService {
     private readonly CommentModel: Model<CommentDocument>,
   ) {}
 
-  create(createCommentDto: CreateCommentDto) {
-    return 'This action adds a new comment';
+  async create(createCommentDto: CreateCommentDto) {
+    createCommentDto['createdAt'] = new Date();
+    if (!createCommentDto['parentId']) {
+      createCommentDto['parentId'] = null;
+    }
+    let newComment = new this.CommentModel(createCommentDto);
+    newComment = await newComment.save();
+    return newComment;
   }
 
   findAll() {
     return `This action returns all comment`;
   }
 
-  findAllByPostId(id: string) {
-    return [];
+  findAllByPostId(postId: string) {
+    return this.CommentModel.find({ postId });
+    // return [];
   }
 
   findOne(id: number) {
