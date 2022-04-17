@@ -24,8 +24,9 @@ export class PostService {
     return `This action returns all post`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  findOne(id: string) {
+    console.log('id is ', id);
+    return this.PostModel.findById(id);
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
