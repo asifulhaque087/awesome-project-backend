@@ -16,7 +16,7 @@ export class Comment {
   parentId: Types.ObjectId;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Post' })
-  post: Types.ObjectId;
+  postId: Types.ObjectId;
 
   @Prop()
   createdAt: Date;
