@@ -27,7 +27,7 @@ export class CommentService {
   }
 
   findAllByPostId(postId: string) {
-    return this.CommentModel.find({ postId });
+    return this.CommentModel.find({ postId }).sort({ createdAt: -1 });
     // return [];
   }
 
